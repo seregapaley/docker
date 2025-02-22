@@ -1,6 +1,5 @@
-FROM ubuntu
-RUN apt update
-RUN apt install -y apache2
-RUN apt install -y apache2-utils
+FROM ubuntu:lates
+RUN apt-get -y update && apt-get -y install nginx
+COPY content/index.html /var/www/html/index.nginx-debian.html
 EXPOSE 80
-CMD [“apache2ctl”, “-D”, “FOREGROUND”]
+CMD ["nginx", "-g", "daemon off;"]
